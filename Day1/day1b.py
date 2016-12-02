@@ -3,31 +3,31 @@ f = open("A.txt")
 # Put our data parsed into an array
 data = f.readlines()[0].replace(" ", "").split(",")
 
-
-#Starting location
+# Starting location
 x = 0
 y = 0
 currentDirection = 0
 
-#Keep track of locations visited
+# Keep track of locations visited
 visited = []
 
 
-def checkCurrent ():
-    #check if visited
+def checkCurrent():
+    # check if visited
     global visited
     global x
     global y
-    if (x,y) in visited:
-        print (abs(x) + abs(y))
+    if (x, y) in visited:
+        print(abs(x) + abs(y))
         exit(0)
     else:
-        visited.append((x,y))
+        visited.append((x, y))
+
 
 for instruction in data:
-    #Turning left or right
+    # Turning left or right
     currentDirection = (currentDirection - 1) if instruction[0] == 'L' else (currentDirection + 1)
-    #If it's 0, 1, its N or E in NESW
+    # If it's 0, 1, its N or E in NESW
     distance = int(instruction[1:])
     for i in range(distance):
         # If it's 0, 1, its N or E in NESW
@@ -43,6 +43,5 @@ for instruction in data:
                 x -= 1
             else:
                 y -= 1
-        #Check if intersect at each step
+        # Check if intersect at each step
         checkCurrent()
-
